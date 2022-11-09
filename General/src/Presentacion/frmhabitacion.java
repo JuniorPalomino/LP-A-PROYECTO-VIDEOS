@@ -1,21 +1,10 @@
 package Presentacion;
 
-
-
 import Datos.vhabitacion;
-import Logica.conexion;
 import Logica.fhabitacion;
-import java.io.File;
-import java.sql.Connection;
-import java.util.HashMap;
-import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.view.JasperViewer;
+
 
 /**
  *
@@ -27,8 +16,6 @@ public class frmhabitacion extends javax.swing.JInternalFrame {
         initComponents();
         mostrar("");
         inhabilitar();
-        
-        
         
     }
 
@@ -42,6 +29,7 @@ public class frmhabitacion extends javax.swing.JInternalFrame {
 
     void inhabilitar() {
         txtidhabitacion.setVisible(false);
+        
         cbopiso.setEnabled(false);
         txtnumero.setEnabled(false);
         txtdescripcion.setEnabled(false);
@@ -512,27 +500,17 @@ public class frmhabitacion extends javax.swing.JInternalFrame {
                 mostrar("");
                inhabilitar();
                 
-            }
-            
-            
-            
-            
+            }  
         }
         else if (accion.equals("editar")){
             dts.setIdhabitacion(Integer.parseInt(txtidhabitacion.getText()));
-            
-            
             if (func.editar(dts)) {
                 JOptionPane.showMessageDialog(rootPane, "La habitación fue Editada satisfactoriamente");
                 mostrar("");
                 inhabilitar();
             }
         }
-        
-        
-        
-        
-        
+
     }//GEN-LAST:event_btnguardarActionPerformed
 
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
@@ -604,41 +582,14 @@ public class frmhabitacion extends javax.swing.JInternalFrame {
         
         cboestado.setSelectedItem(tablalistado.getValueAt(fila, 6).toString());
         cbotipo_habitacion.setSelectedItem(tablalistado.getValueAt(fila, 7).toString());
-        
-       
-       
-       
-        
-    }//GEN-LAST:event_tablalistadoMouseClicked
 
+    }//GEN-LAST:event_tablalistadoMouseClicked
+    
     private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
         // TODO add your handling code here:
         this.dispose();
         
-    }//GEN-LAST:event_btnsalirActionPerformed
-    
-   private Connection connection=new conexion().conectar();
-    
-    private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
-        @SuppressWarnings("rawtypes")
-		Map p=new HashMap();
-        JasperReport report;
-        JasperPrint print;
-        
-        try {
-            report=JasperCompileManager.compileReport(new File("").getAbsolutePath()+
-                    "/src/Reportes/rpHabitaciones.jrxml");
-            print=JasperFillManager.fillReport(report, p,connection);
-            JasperViewer view=new JasperViewer(print,false);
-            view.setTitle("Reporte de Habitaciones");
-            view.setVisible(true);            
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
-    }//GEN-LAST:event_btnReporteActionPerformed
-
+    }
     /**
      * @param args the command line arguments
      */
